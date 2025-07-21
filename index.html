@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arunkumar M - Lead UI/UX Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f1f5f9;
+            --accent: #06b6d4;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            transform: translateY(0);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: var(--secondary);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--secondary);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-role {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-duration {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .project-responsibilities {
+            margin: 1rem 0;
+        }
+
+        .project-responsibilities h4 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-responsibilities ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .project-responsibilities li {
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--gradient);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">Arunkumar M</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Arunkumar M</h1>
+                    <div class="subtitle">Lead UI & UX Developer</div>
+                    <p>Passionate about creating intuitive digital experiences with 9+ years of expertise in UI/UX design, frontend development, and accessibility implementation.</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="profile-card">
+                        <div class="profile-img">AM</div>
+                        <h3>Lead UI/UX Developer</h3>
+                        <p>Chennai, India</p>
+                        <p>9+ Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">9+</div>
+                        <div>Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">13+</div>
+                        <div>Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div>Months Onsite</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div>Degrees</div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Professional Summary</h3>
+                    <p>I'm a dedicated Lead UI/UX Developer with a passion for creating user-centered digital experiences. With 9+ years of experience in the field, I specialize in designing and developing responsive, accessible web applications that align with business objectives.</p>
+                    
+                    <p>My journey includes working with major brands like KFC, Walgreens, and various telecom and fintech companies. I have extensive experience in onsite work (Indonesia) and excel in collaborative environments.</p>
+
+                    <h4>Education</h4>
+                    <ul style="margin: 1rem 0;">
+                        <li><strong>B.E Computer Science</strong> - SMK Fomra Institute of Technology (2011-2015) - 65%</li>
+                        <li><strong>MBA General Management</strong> - Anna University (2017-2019) - 67%</li>
+                    </ul>
+
+                    <h4>Key Strengths</h4>
+                    <ul>
+                        <li>Dedication and drive as a hard-working individual</li>
+                        <li>Superlative communication and team-building skills</li>
+                        <li>Ability to manage multiple tasks in a pressured environment</li>
+                        <li>Ready to assume new challenges to meet objectives</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Design Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Adobe XD</span>
+                        <span class="skill-tag">Illustrator</span>
+                        <span class="skill-tag">Balsamiq</span>
+                        <span class="skill-tag">Wireframing</span>
+                        <span class="skill-tag">Prototyping</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend Technologies</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">SASS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React JS</span>
+                        <span class="skill-tag">Angular JS</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">Tailwind</span>
+                        <span class="skill-tag">Material UI</span>
+                        <span class="skill-tag">Vuetify</span>
+                        <span class="skill-tag">Quasar</span>
+                        <span class="skill-tag">PrimeNG</span>
+                        <span class="skill-tag">NG Bootstrap</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Accessibility & Testing</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">WCAG Accessibility</span>
+                        <span class="skill-tag">ADA Compliance</span>
+                        <span class="skill-tag">Usability Testing</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Information Architecture</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Development Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Sublime</span>
+                        <span class="skill-tag">Atom</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">SharePoint</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Project Management</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">ServiceNow</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Team Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Cango (Telecom Platform)</div>
+                        <div class="project-role">Lead UI/UX Designer</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">Nov 2024 - Current</div>
+                        <p>Comprehensive telecom management platform designed to streamline operations for telecom service providers. The platform offers modules for customer onboarding, plan management, billing, real-time usage tracking, and support ticketing.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Implementing user-friendly design for website</li>
+                                <li>Building responsive website design and UI alignment bug fixing</li>
+                                <li>Creating wireframes and prototypes for client feedback and approval</li>
+                                <li>Crafting intuitive interfaces aligned with user needs and business objectives</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Angular Material</span>
+                            <span class="tech-tag">SASS</span>
+                            <span class="tech-tag">PrimeNG</span>
+                            <span class="tech-tag">Jira</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">GoTo Foods (Focus Brand)</div>
+                        <div class="project-role">Lead UI/UX Designer 2 & ADA Dev & Test</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">April 2024 - Nov 2024</div>
+                        <p>GoTo Foods develops and operates foodservice brands including Schlotzsky's, Carvel, Cinnabon, Moe's Southwest Grill, McAlister's Deli, Auntie Anne's and Jamba brands. Located in Sandy Springs, Georgia, operating over 5,000 stores.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Implementing user-friendly design for website</li>
+                                <li>Building responsive website design and UI alignment bug fixing</li>
+                                <li>Developing ADA implementation and accessibility testing</li>
+                                <li>Creating wireframes and prototypes for client feedback and approval</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Material UI</span>
+                            <span class="tech-tag">WCAG</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Azure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">KFC</div>
+                        <div class="project-role">Lead UI/UX Designer 2 & ADA Dev & Test</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">Dec 2023 - March 2024</div>
+                        <p>KFC is an American fast-food restaurant chain headquartered in Louisville, Kentucky, specializing in fried chicken. It is the world's second-largest restaurant chain after McDonald's.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Implementing user-friendly design for website</li>
+                                <li>Building responsive website design and UI alignment bug fixing</li>
+                                <li>Developing ADA implementation and accessibility compliance</li>
+                                <li>Creating wireframes and prototypes for client feedback and approval</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">SASS</span>
+                            <span class="tech-tag">WCAG</span>
+                            <span class="tech-tag">Azure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">ECP (Eyecare Partners)</div>
+                        <div class="project-role">Lead UI/UX Developer 2 & ADA Dev & Test</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">Dec 2023 - March 2024</div>
+                        <p>Eyecare Partners unites eye care specialists and thought leaders from every subspecialty with a mission of setting the industry standard in patient care.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Understanding business requirements, creating stories and assigning tasks to employees</li>
+                                <li>Creating responsive web design and developing ADA implementation</li>
+                                <li>Collaborating effectively with the on-site team and working closely with dev team</li>
+                                <li>WCAG accessibility compliance and testing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">WCAG</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Excel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">B & T (Baker & Taylor)</div>
+                        <div class="project-role">Lead UI/UX Developer 2 & ADA Dev</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">Aug 2023 - Dec 2023</div>
+                        <p>Baker & Taylor provides library content, software, and services to public and academic libraries in the U.S. They also offer digital media services, technology platforms, and retail merchandising solutions.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Developing user-friendly and visually appealing designs for digital products</li>
+                                <li>Building responsive web design and developing ADA implementation</li>
+                                <li>Bug fixing and quality assurance</li>
+                                <li>Presenting designs and prototypes to stakeholders for feedback and approval</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">WCAG</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">SASS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Fiserv</div>
+                        <div class="project-role">Senior UI/UX Designer</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">July 2023 - July 2023</div>
+                        <p>Fiserv is a global fintech and payments company with solutions for banking, global commerce, merchant acquiring, billing and payments, and point-of-sale.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Developing user-friendly and visually appealing designs for digital products</li>
+                                <li>Building responsive web design and involving bug fixing</li>
+                                <li>Presenting designs and prototypes to stakeholders for feedback and approval</li>
+                                <li>Creating user flows and wireframes for web and mobile apps</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">User Flow</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Sentient AI Platform</div>
+                        <div class="project-role">Module Lead (UI/UX)</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">Jan 2023 - June 2023</div>
+                        <p>Sentient provides an AI-as-a-service platform that companies can use to accelerate their AI adoption through the use of a wide variety of ready-to-use AI models available via APIs.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Understanding business requirements and creating responsive UI design</li>
+                                <li>User research, competitor analysis, and information architecture</li>
+                                <li>Collaborating effectively with on-site team and working closely with dev team</li>
+                                <li>Creating wireframes, prototypes, style guides, and user flows</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Tailwind</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Balsamiq</span>
+                            <span class="tech-tag">SASS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Media Corp</div>
+                        <div class="project-role">Module Lead (UI/UX)</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">July 2022 - Sep 2022</div>
+                        <p>Mediacorp Pte. Ltd. is a state-owned public media conglomerate in Singapore. Owned by Temasek Holdings, it owns and operates television broadcasting stations, radio, and digital media properties.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Understanding business requirements and creating responsive UI design</li>
+                                <li>User research, competitor analysis, and information architecture</li>
+                                <li>Collaborating effectively with on-site team and dev team</li>
+                                <li>Creating wireframes, prototypes, style guides, and visual design</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Quasar</span>
+                            <span class="tech-tag">SASS</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Balsamiq</span>
+                            <span class="tech-tag">HTML5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">VMS (Vacation Management System)</div>
+                        <div class="project-role">Senior UI/UX Designer</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">2020 - 2022</div>
+                        <p>VMS Phase 2 application helps employees submit leave requests and get them approved by managers with customizations like calendar view, employee-wise reports, and export functionality.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Understanding business requirements and creating responsive UI design</li>
+                                <li>User research and user experience optimization</li>
+                                <li>Collaborating effectively with on-site team and dev team</li>
+                                <li>Creating wireframes and design systems</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Bootstrap 4</span>
+                            <span class="tech-tag">Adobe XD</span>
+                            <span class="tech-tag">SASS</span>
+                            <span class="tech-tag">Wireframe</span>
+                            <span class="tech-tag">HTML5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Time Tracker</div>
+                        <div class="project-role">UI/UX Designer</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">2018 - 2020</div>
+                        <p>Revamped the existing time tracker application used by Photon employees to fill their day-wise timesheet. Application switches between week-wise entry on desktop and day-wise entry modes.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Understanding business requirements and creating responsive UI design</li>
+                                <li>User research and improving user experience</li>
+                                <li>Collaborating effectively with on-site team and dev team</li>
+                                <li>Application redesign and user interface optimization</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Bootstrap 4</span>
+                            <span class="tech-tag">Adobe XD</span>
+                            <span class="tech-tag">SASS</span>
+                            <span class="tech-tag">Wireframe</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Visa Management</div>
+                        <div class="project-role">UI/UX Designer</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">2017 - 2018</div>
+                        <p>US visa process consists of multiple phases and in a grown-up organization it is very tough to track those with email communications. VISA application was designed to overcome this challenge.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Understanding business requirements and creating responsive UI design</li>
+                                <li>Getting input from client and implementing user-friendly web design</li>
+                                <li>Collaborating effectively with on-site team and dev team</li>
+                                <li>Process workflow design and user interface creation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Bootstrap 4</span>
+                            <span class="tech-tag">Adobe XD</span>
+                            <span class="tech-tag">SASS</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Walgreens</div>
+                        <div class="project-role">Trainee UI/UX Designer</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-duration">2016 - 2017</div>
+                        <p>Walgreens is an American company that operates the second-largest pharmacy store chain in the United States, behind CVS Health. It specializes in filling prescriptions, health and wellness products, and photo services.</p>
+                        
+                        <div class="project-responsibilities">
+                            <h4>Key Responsibilities:</h4>
+                            <ul>
+                                <li>Developing user-friendly and visually appealing designs for digital products</li>
+                                <li>Building prototypes and wireframes for mobile apps (Android and iOS)</li>
+                                <li>Presenting designs and prototypes to stakeholders for feedback and approval</li>
+                                <li>Learning and applying UI/UX design principles in real projects</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Mobile Design</span>
+                            <span class="tech-tag">User Flow</span>
+                            <span class="tech-tag">Wireframing</span>
+                            <span class="tech-tag">Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Ready to create something amazing together? I'm always open to discussing new opportunities and exciting projects.</p>
+                    
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <div>
+                            <strong>Email</strong><br>
+                            arunmm.career@gmail.com
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +91 968 809 3382
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <div>
+                            <strong>Location</strong><br>
+                            Chennai, Tamil Nadu, India
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="contact-item">
+                        <span>🌐</span>
+                        <div>
+                            <strong>Portfolio</strong><br>
+                            <a href="https://marun0402.github.io/Aruunkumar_portfolio/" style="color: white;">View Current Portfolio</a>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.project-card, .skill-category, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
